@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-@DisplayName(value = "All the Test Cases of MyUtils")
-public class AllJunitTestCases {
+@DisplayName(value = "Test Cases of junit methods")
+public class JunitMethodsDemoTest {
 	private ArrayList<String> list;
 
 	@BeforeAll

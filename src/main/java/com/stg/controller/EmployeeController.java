@@ -32,7 +32,7 @@ public class EmployeeController {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
-		return new ResponseEntity<>(employeeService.geEemployeeById(id), HttpStatus.OK);
+		return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -42,11 +42,11 @@ public class EmployeeController {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee newEmployee){
-		return new ResponseEntity<>(employeeService.updatEmployee(id, newEmployee), HttpStatus.OK);
+		return new ResponseEntity<>(employeeService.updateEmployee(id, newEmployee), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<List<Employee>> deleteEmployee(@PathVariable Long id){
+	public ResponseEntity<String> deleteEmployee(@PathVariable Long id){
 		return new ResponseEntity<>(employeeService.deleteEmployee(id), HttpStatus.OK);
 	}
 }

@@ -1,6 +1,8 @@
 package com.stg.utils;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName(value = "All the Test Cases of Calculator")
+@DisplayName(value = "Test Cases of Calculator")
 class CalculatorTest {
 
 	private Calculator calculator;
@@ -48,6 +50,13 @@ class CalculatorTest {
 	@Test
 	void testDiv() {
 		assertEquals(2, calculator.div(10, 5));
+	}
+	
+	@Test
+	void testDiv_exception() {
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+			calculator.div(10, 0);
+		});
 	}
 
 }

@@ -25,7 +25,7 @@ public class Employee {
 	private String firstName;
 
 	@Column
-	private String lastname;
+	private String lastName;
 
 	@Column
 	private String email;
