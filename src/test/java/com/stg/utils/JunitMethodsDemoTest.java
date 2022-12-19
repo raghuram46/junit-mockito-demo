@@ -14,7 +14,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -45,6 +44,14 @@ public class JunitMethodsDemoTest {
 		list.clear();
 		System.out.println("Using @AfterEach ,executed after each test case");
 	}
+	
+	@Test
+	@Tag("dev")
+	void greetingsTest() {
+		JunitMethodsDemo junitMethodsDemo = new JunitMethodsDemo();
+		String name = "Raghu";
+		assertEquals("Welcome " + name, junitMethodsDemo.greetings(name));
+	}
 
 	@Test
 	@Tag("dev")
@@ -63,12 +70,8 @@ public class JunitMethodsDemoTest {
 		System.out.println("we can use @Timeout to fail a test if the execution time exceeds a given duration.");
 	}
 
-	void delaySecond(int second) {
-		try {
-			TimeUnit.SECONDS.sleep(second);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	void delaySecond(int second) throws Exception {
+		TimeUnit.SECONDS.sleep(second);
 	}
 
 	@Test
@@ -97,7 +100,7 @@ public class JunitMethodsDemoTest {
 		assertEquals("We interrupt this test to throw an runtime exception", exception.getMessage());
 	}
 
-	@Disabled("because if this ran it would fail")
+	//@Disabled("because if this ran it would fail")
 	@Test
 	@Tag("prod")
 	public void m() {

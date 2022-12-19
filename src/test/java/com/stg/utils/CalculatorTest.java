@@ -2,7 +2,6 @@ package com.stg.utils;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -54,9 +53,9 @@ class CalculatorTest {
 	
 	@Test
 	void testDiv_exception() {
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-			calculator.div(10, 0);
-		});
+		Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> calculator.div(10, 0));
+		
+		assertEquals("Invalid arguments", exception.getMessage());
 	}
 
 }

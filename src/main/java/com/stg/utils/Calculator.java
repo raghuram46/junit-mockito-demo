@@ -14,7 +14,7 @@ public class Calculator {
 		if (a > 0 && b > 0) {
 			return a / b;
 		} else {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException("Invalid arguments");
 		}
 
 	}
