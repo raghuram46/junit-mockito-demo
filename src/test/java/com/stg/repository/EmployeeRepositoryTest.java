@@ -14,23 +14,30 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.stg.entity.Employee;
 
-@ExtendWith(MockitoExtension.class)
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class EmployeeRepositoryTest {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private TestEntityManager entityManager;
 
 	private Employee employee;
 
 	@BeforeEach
 	public void setup() {
 		employee = Employee.builder().firstName("Ramesh").lastName("Tendulkar").email("ramesh@gmail,com").build();
+		entityManager.persist(employee);
 	}
 
 	@Test
