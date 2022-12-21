@@ -19,4 +19,6 @@ public class Junit5TestSuiteExample {
 	void testMethod() {
 		assertTrue(true);
 	}
+	
+
 }

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterAll;
@@ -18,7 +19,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 @DisplayName(value = "Test Cases of junit methods")
 public class JunitMethodsDemoTest {
 	private ArrayList<String> list;
@@ -36,6 +43,7 @@ public class JunitMethodsDemoTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		list = new ArrayList<>();
+		MockitoAnnotations.openMocks(this);
 		System.out.println("Using @BeforeEach annotations ,executed before each test case ");
 	}
 
@@ -44,7 +52,7 @@ public class JunitMethodsDemoTest {
 		list.clear();
 		System.out.println("Using @AfterEach ,executed after each test case");
 	}
-	
+
 	@Test
 	@Tag("dev")
 	void greetingsTest() {
@@ -100,11 +108,36 @@ public class JunitMethodsDemoTest {
 		assertEquals("We interrupt this test to throw an runtime exception", exception.getMessage());
 	}
 
-	//@Disabled("because if this ran it would fail")
+	// @Disabled("because if this ran it would fail")
 	@Test
 	@Tag("prod")
 	public void m() {
 		assertFalse(false);
 		System.out.println("Using @Disabled , this execution is ignored");
 	}
+
+	@Spy
+	List<String> spyList2 = new ArrayList<>();
+
+	/*
+	 * @Test public void whenUsingTheSpyAnnotation_thenObjectIsSpied() {
+	 * System.out.println(spyList2); spyList2.add("one"); spyList2.add("two");
+	 * 
+	 * 
+	 * Mockito.verify(spyList2).add("one"); Mockito.verify(spyList2).add("two");
+	 * 
+	 * assertEquals(2, spyList2.size()); }
+	 */
+
+	/*
+	 * @Test public void spyExample() {
+	 * 
+	 * List<String> spyList1 = Mockito.spy(new ArrayList<String>());
+	 * spyList1.add("one"); spyList1.add("two");
+	 * 
+	 * Mockito.verify(spyList1).add("one"); Mockito.verify(spyList1).add("two");
+	 * 
+	 * assertEquals(2, spyList1.size()); }
+	 */
+
 }
